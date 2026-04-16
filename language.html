@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Select Language</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+                url('images/image.jpg');
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 120px);
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .lang-btn {
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        .lang-btn:hover {
+            background: #1DB954;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Select Your Language 🎵</h1>
+
+        <div class="grid">
+            <button class="lang-btn" onclick="selectLang('Hindi')">Hindi</button>
+            <button class="lang-btn" onclick="selectLang('Telugu')">Telugu</button>
+            <button class="lang-btn" onclick="selectLang('Kannada')">Kannada</button>
+            <button class="lang-btn" onclick="selectLang('Malayalam')">Malayalam</button>
+            <button class="lang-btn" onclick="selectLang('Punjabi')">Punjabi</button>
+
+        </div>
+    </div>
+
+    <script>
+        function selectLang(lang) {
+            localStorage.setItem("language", lang);
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+
+</html>

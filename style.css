@@ -1,0 +1,102 @@
+body {
+    body {
+        min-height: 100vh;
+    }
+
+    margin: 0;
+    font-family: Arial;
+    background: #121212;
+    color: white;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: black;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    color: #1db954;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+/* Main */
+.main {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+/* Songs */
+.songs {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.song-card {
+    background: #181818;
+    padding: 15px;
+    border-radius: 10px;
+    width: 150px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.song-card:hover {
+    background: #282828;
+}
+
+.song-card button {
+    background: #1db954;
+    border: none;
+    padding: 8px;
+    color: white;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+/* Player */
+.player {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0;
+    width: 100%;
+
+    background: #181818;
+    padding: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.player-controls button {
+    background: #1db954;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}

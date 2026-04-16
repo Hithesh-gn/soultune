@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Soul Tune</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ADD THIS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <script>
+        let user = localStorage.getItem("user");
+        if (!user) window.location.href = "login.html";
+    </script>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>🎵 Soul Tune</h2>
+        <ul>
+            <li>🏠 Home</li>
+            <li>🔍 Search</li>
+            <li>📚 Library</li>
+        </ul>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <div class="top">
+            <h2 id="welcome"></h2>
+            <p id="langDisplay"></p>
+        </div>
+
+        <h2>🎧 Your Playlist</h2>
+
+        <div id="songList" class="songs"></div>
+
+    </div>
+
+    <!-- PLAYER -->
+    <div class="player">
+        <audio id="audioPlayer"></audio>
+        <div class="player-controls">
+            <button><i class="fas fa-step-backward"></i></button>
+            <button id="playPauseBtn"><i class="fas fa-play"></i></button>
+            <button><i class="fas fa-step-forward"></i></button>
+        </div>
+    </div>
+
+    <script>
+        let userName = localStorage.getItem("user");
+        let language = localStorage.getItem("language");
+
+        document.getElementById("welcome").innerText = "Welcome " + userName;
+        document.getElementById("langDisplay").innerText = "Language: " + language;
+
+        let songs = {
+            Kannada: [
+                { name: "Kuhu Kogile", file: "songs/kuhu kuhu kogile.mp3" },
+                { name: "kushalave kshemave", file: "songs/kushalave kshemave.mp3" }
+
+            ],
+            Hindi: [
+                { name: "Kesariya", file: "songs/kesariya.mp3" },
+                { name: "Ishq wala", file: "songs/ishq wala.mp3" }
+
+            ],
+            Malayalam: [
+                { name: "Kanmani", file: "songs/kanmani.mp3" },
+                { name: "Illuminati", file: "songs/illuminati.mp3" }
+            ],
+            Telugu: [
+                { name: "Endhayya Saami", file: "songs/endhayya saami.mp3" },
+                { name: "Apudo ipudo", file: "songs/Apudo ipudo.mp3" }
+
+            ],
+            Punjabi: [
+                { name: "Tauba Tauba", file: "songs/tauba tauba.mp3" },
+                { name: "shaky ", file: "songs/shaky.mp3" }
+            ]
+        };
+
+        let list = document.getElementById("songList");
+
+
+        let audio = document.getElementById("audioPlayer");
+        let currentSongIndex = 0;
+        let currentList = songs[language];
+
+        if (currentList) {
+            currentList.forEach((song, index) => {
+
+                let card = document.createElement("div");
+                card.className = "song-card";
+
+                card.innerHTML = `
+                <h3>${song.name}</h3>
+                <button>▶ Play</button>
+            `;
+
+                card.onclick = () => {
+                    console.log("Playing:", song.file);
+
+                    currentSongIndex = index;
+                    audio.src = song.file;
+                    audio.play();
+                };
+
+                list.appendChild(card);
+            });
+        }
+
+
+        let playBtn = document.getElementById("playPauseBtn");
+
+        playBtn.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                audio.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        });
+
+
+        document.querySelector('.fa-step-forward').parentElement.onclick = () => {
+            currentSongIndex = (currentSongIndex + 1) % currentList.length;
+            audio.src = currentList[currentSongIndex].file;
+            audio.play();
+        };
+
+        document.querySelector('.fa-step-backward').parentElement.onclick = () => {
+            currentSongIndex = (currentSongIndex - 1 + currentList.length) % currentList.length;
+            audio.src = currentList[currentSongIndex].file;
+            audio.play();
+        };
+
+    </script>
+
+</body>
+
+</html>
